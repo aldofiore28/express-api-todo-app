@@ -1,11 +1,7 @@
 import express, { Request, Response, Application } from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { PORT } from './util/secrets';
 
 const server: Application = express();
-
-const PORT: number = parseInt(process.env.PORT) || 3030;
 
 server.get('/', (req: Request, res: Response) => {
 	return res.json({
