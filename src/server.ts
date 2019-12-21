@@ -1,7 +1,10 @@
-import express, { Request, Response, Application } from 'express';
-import { PORT } from './util/secrets';
+import { MongoClient } from 'mongodb';
+import { createConnectionToDb } from './db/database';
+import express, { Request, Response } from 'express';
+import { PORT, MONGODB_URI } from './util/secrets';
 
-const server: Application = express();
+const server: express.Application = express();
+const dbConnection: MongoClient = createConnectionToDb(MONGODB_URI);
 
 server.get('/', (req: Request, res: Response) => {
 	return res.json({
