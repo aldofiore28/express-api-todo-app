@@ -6,7 +6,7 @@ export default (mongoDbUri: string) => {
 		useUnifiedTopology: true,
 	})
 		.then(() => console.log('  Connected to the database'))
-		.catch(err => console.log(  'MongoDB connection error. Please make sure MongoDB is running. ' + err));
+		.catch((err: mongoose.Error) => console.log(  'MongoDB connection error. Please make sure MongoDB is running. ' + err));
 
-	mongoose.connection.on('error', err => console.error('  An error as occurred. ' + err));
+	mongoose.connection.on('error', (err: mongoose.Error) => console.error('  An error as occurred. ' + err));
 };

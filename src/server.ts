@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { PORT, MONGODB_URI } from './util/secrets';
 import initializeAndSetupServer from './config/initializeAndSetupServer';
 import connectToDb from './db/dbHandler';
@@ -8,7 +8,7 @@ import connectToDb from './db/dbHandler';
 const server: express.Application = initializeAndSetupServer();
 connectToDb(MONGODB_URI);
 
-server.get('/', (req: Request, res: Response) => {
+server.get('/', (req: express.Request, res: express.Response) => {
 	return res.json({
 		message: 'hello',
 	});
