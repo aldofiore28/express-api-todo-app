@@ -1,10 +1,13 @@
 import { MongoClient } from 'mongodb';
-import { createConnectionToDb } from './db/database';
 import express, { Request, Response } from 'express';
 import { PORT, MONGODB_URI } from './util/secrets';
+import initializeAndSetupServer from './config/initializeAndSetupServer';
+import connectToDb from './db/dbHandler';
 
-const server: express.Application = express();
-const dbConnection: MongoClient = createConnectionToDb(MONGODB_URI);
+
+// Setting up express
+const server: express.Application = initializeAndSetupServer();
+connectToDb(MONGODB_URI);
 
 server.get('/', (req: Request, res: Response) => {
 	return res.json({
@@ -14,8 +17,8 @@ server.get('/', (req: Request, res: Response) => {
 
 server.listen(PORT, () => {
 	console.log('  ');
-	console.log('  Server running on https://localhost:' + PORT);
-	console.log('  CTRL + C to stop the server');
+	console.log('  Server running on https://localhost:' + PORT + '.');
+	console.log('  CTRL + C to stop the server.');
 });
 
 export default server;
