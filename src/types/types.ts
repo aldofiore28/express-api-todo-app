@@ -1,5 +1,5 @@
-export interface JsonResponse {
+export interface JsonResponse<T> {
 	success: boolean;
 	message: string;
-	data: object[];
+	data: T;
 };
