@@ -1,4 +1,3 @@
-import { MongoClient } from 'mongodb';
 import express, { Request, Response } from 'express';
 import { PORT, MONGODB_URI } from './util/secrets';
 import initializeAndSetupServer from './config/initializeAndSetupServer';

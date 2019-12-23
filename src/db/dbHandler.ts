@@ -4,9 +4,9 @@ export default (mongoDbUri: string) => {
 	mongoose.connect(mongoDbUri, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-	});
+	})
+		.then(() => console.log('  Connected to the database'))
+		.catch(err => console.log(  'MongoDB connection error. Please make sure MongoDB is running. ' + err));
 
-	const dbListener = mongoose.connection;
-	dbListener.on('error', err => console.error('  MongoDB connection error. Please make sure MongoDB is running. ' + err));
-	dbListener.once('open', () => console.log('  Connected to the database'));
+	mongoose.connection.on('error', err => console.error('  An error as occurred. ' + err));
 };
