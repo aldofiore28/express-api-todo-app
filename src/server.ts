@@ -1,22 +1,21 @@
-import express, { Request, Response, Application } from 'express';
-import dotenv from 'dotenv';
+import express from 'express';
+import { PORT, MONGODB_URI } from './util/secrets';
+import initializeAndSetupServer from './config/initializeAndSetupServer';
+import connectToDb from './db/dbHandler';
+import router from './controllers/combineRouters';
 
-dotenv.config();
+// Setting up express
+const server: express.Application = initializeAndSetupServer();
 
-const server: Application = express();
+// Connecting to the database
+connectToDb(MONGODB_URI);
 
-const PORT: number = parseInt(process.env.PORT) || 3030;
-
-server.get('/', (req: Request, res: Response) => {
-	return res.json({
-		message: 'hello',
-	});
-});
+server.use('/api', router);
 
 server.listen(PORT, () => {
 	console.log('  ');
-	console.log('  Server running on https://localhost:' + PORT);
-	console.log('  CTRL + C to stop the server');
+	console.log('  Server running on http://localhost:' + PORT + '.');
+	console.log('  CTRL + C to stop the server.');
 });
 
 export default server;
