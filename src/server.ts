@@ -1,4 +1,3 @@
-import express from 'express';
 import { PORT, MONGODB_URI } from './util/secrets';
 import initializeAndSetupServer from './config/initializeAndSetupServer';
 import connectToDb from './db/dbHandler';
