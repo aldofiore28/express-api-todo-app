@@ -4,13 +4,11 @@ import initializeAndSetupServer from './config/initializeAndSetupServer';
 import connectToDb from './db/dbHandler';
 import router from './controllers/combineRouters';
 
-// Setting up express
-const server: express.Application = initializeAndSetupServer();
+const server = initializeAndSetupServer();
 
-// Connecting to the database
 connectToDb(MONGODB_URI);
 
-server.use('/api', router);
+server.use('/api/v1', router);
 
 server.listen(PORT, () => {
 	console.log('  ');

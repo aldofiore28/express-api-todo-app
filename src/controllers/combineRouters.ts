@@ -3,6 +3,6 @@ import todoRouter from './todo.controller';
 
 const combinedRouter = express.Router();
 
-combinedRouter.use('/', todoRouter);
+combinedRouter.use('/todos', todoRouter);
 
 export default combinedRouter;

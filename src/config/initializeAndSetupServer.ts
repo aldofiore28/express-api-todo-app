@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-export default () => {
-	const server: express.Application = express();
+export default (): express.Application => {
+	const server = express();
 
 	server.use(bodyParser.json());
 	server.use(bodyParser.urlencoded({ extended: true }));
